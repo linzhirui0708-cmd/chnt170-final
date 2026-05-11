@@ -128,16 +128,21 @@ a:hover { color: var(--terracotta-2); border-color: var(--terracotta-2); }
 /* ============== HOME HERO ============== */
 .hero {
   position: relative;
-  padding: 130px 0 150px;
+  min-height: calc(100vh - 70px);
+  padding: 90px 0 120px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
   background:
-    radial-gradient(ellipse at 25% 20%, rgba(176, 67, 36, 0.10), transparent 60%),
-    radial-gradient(ellipse at 80% 70%, rgba(26, 42, 74, 0.10), transparent 60%),
+    radial-gradient(ellipse at 18% 15%, rgba(176, 67, 36, 0.13), transparent 55%),
+    radial-gradient(ellipse at 82% 80%, rgba(26, 42, 74, 0.12), transparent 55%),
+    radial-gradient(ellipse at 65% 35%, rgba(176, 134, 40, 0.07), transparent 50%),
     var(--paper);
 }
 
 .hero-inner {
   max-width: 1180px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 36px;
   position: relative;
@@ -151,30 +156,52 @@ a:hover { color: var(--terracotta-2); border-color: var(--terracotta-2); }
   text-transform: uppercase;
   color: var(--terracotta);
   font-weight: 600;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+}
+
+/* a thin terracotta rule with a dot — small museum-poster flourish */
+.hero-rule {
+  position: relative;
+  width: 88px;
+  margin-bottom: 44px;
+}
+.hero-rule::before {
+  content: '';
+  display: block;
+  height: 1.5px;
+  background: var(--terracotta);
+}
+.hero-rule span {
+  position: absolute;
+  right: -7px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--terracotta);
 }
 
 .hero h1 {
   font-family: 'Cormorant Garamond', serif;
   font-weight: 500;
-  font-size: clamp(48px, 7vw, 92px);
-  line-height: 1.04;
-  letter-spacing: -0.5px;
+  font-size: clamp(54px, 8vw, 112px);
+  line-height: 1.0;
+  letter-spacing: -0.8px;
   color: var(--ink);
-  max-width: 14ch;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
 }
 .hero h1 em {
   font-style: italic;
   color: var(--terracotta);
+  font-weight: 600;
 }
 
 .lede {
-  font-size: clamp(20px, 1.6vw, 24px);
-  line-height: 1.65;
+  font-size: clamp(19px, 1.4vw, 22px);
+  line-height: 1.6;
   color: var(--ink-soft);
-  max-width: 60ch;
-  margin-bottom: 60px;
+  max-width: 56ch;
+  margin-bottom: 52px;
   font-style: italic;
 }
 
@@ -185,6 +212,7 @@ a:hover { color: var(--terracotta-2); border-color: var(--terracotta-2); }
   gap: 14px;
   font-family: 'Cormorant Garamond', serif;
   font-size: 22px;
+  margin-bottom: 60px;
 }
 .author-label {
   font-family: 'Inter', sans-serif;
@@ -197,8 +225,67 @@ a:hover { color: var(--terracotta-2); border-color: var(--terracotta-2); }
 .author { color: var(--ink); font-weight: 600; }
 .dot { color: var(--rule); }
 
+/* horizontal strip with the five group names */
+.hero-groups {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  padding-top: 36px;
+  border-top: 1px solid var(--rule);
+  max-width: 720px;
+}
+.hero-groups a {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--ink);
+  border-bottom: none;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+.hero-groups a:hover { color: var(--terracotta); }
+.hero-groups .sep { color: var(--rule); font-size: 16px; }
+
+/* discreet bottom scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  border-bottom: none;
+  color: var(--muted);
+  text-decoration: none;
+}
+.hero-scroll-hint:hover { color: var(--terracotta); }
+.hint-arrow {
+  font-size: 20px;
+  line-height: 1;
+  animation: hintbob 2.2s ease-in-out infinite;
+}
+.hint-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 10.5px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@keyframes hintbob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
 @media (max-width: 880px) {
-  .hero { padding: 70px 0 90px; }
+  .hero { min-height: auto; padding: 60px 0 90px; }
+  .hero-scroll-hint { display: none; }
+  .hero-groups { gap: 10px; }
+  .hero-groups a { letter-spacing: 2px; font-size: 12px; }
 }
 
 /* ============== ABOUT ============== */
